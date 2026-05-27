@@ -1,0 +1,18 @@
+import mongoose, { Schema } from "mongoose";
+
+//Aqui estoy creando un esquema para la coleccion de mongo
+const userSchema = new Schema({
+    //Se puede validar las propiedades
+    name:{
+        type: String,    //Le digo que es tipo string
+        require: true,   //Le digo a mongo que que la propiedad
+    },
+    email: {
+        type: String,
+        require: true,
+    }
+
+})
+
+export const User = 
+mongoose.models.User || mongoose.model("User", userSchema)
