@@ -5,11 +5,11 @@ const userSchema = new Schema({
     //Se pueden validar las propiedades
     name:{
         type: String,    //Le digo que es tipo string
-        require: true,   //Le digo a mongo que que la propiedad
+        required: true,   //Le digo a mongo que que la propiedad
     },
     email: {
         type: String,
-        require: true,
+        required: true,
     }
 
 })

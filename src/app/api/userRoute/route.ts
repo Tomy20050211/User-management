@@ -13,7 +13,7 @@ export async function GET () {
 
     }catch(error){
       return NextResponse.json(
-        {message: "Error al obtener los usuarios"},
+        {message: error instanceof Error ? error.message : "Error al obtener los usuarios"},
         {status: 500}
       )
     }
@@ -22,13 +22,30 @@ export async function GET () {
 
 
 export async function POST (request: NextRequest){
-    await connectDB()
-    
-    const body = await request.json()
+    try {
+      await connectDB()
+      
+      const body = await request.json()
 
-    const newUser = await User.create(body)
+      if (!body.name || !body.email) {
+        return NextResponse.json(
+          {message: "Nombre y email son obligatorios"},
+          {status: 400}
+        )
+      }
 
-    return NextResponse.json(newUser)
+      const newUser = await User.create({
+        name: body.name,
+        email: body.email
+      })
+
+      return NextResponse.json(newUser, {status: 201})
+    } catch (error) {
+      return NextResponse.json(
+        {message: error instanceof Error ? error.message : "Error al crear el usuario"},
+        {status: 500}
+      )
+    }
 };
 
 
