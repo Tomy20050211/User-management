@@ -1,6 +1,6 @@
 'use client'
-import { getUsers } from "@/src/services/user";
-import { deleteUsers } from "@/src/services/user";
+import { getUsers, deleteUsers} from "@/src/services/user";
+
 import { useEffect, useState } from "react";
 import type { UserProps } from "@/src/types/user";
 import Table from "@/src/components/ui/TableUsers";

@@ -7,6 +7,7 @@ export default function Button ({
     type = "button",
     disabled = false,
     className = "",
+    
 }: ButtonProps) {
     return (
         <button
